@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, Button } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -47,6 +47,7 @@ export default function App() {
           <Stack.Screen
             name="MealDetail"
             component={MealScreen}
+
             // options={({ route, navigation }) => {
             //   const catId = route.params.categoryId;
             //   const title = getNameByID(catId);
