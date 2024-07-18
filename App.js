@@ -4,15 +4,22 @@ import { StatusBar } from "expo-status-bar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverViewScreen from "./screens/MealsOverViewScreen";
 import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import { CATEGORIES } from "./data/dummy-data";
 import MealScreen from "./screens/MealDetailScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
 
 const Stack = createNativeStackNavigator();
-// function getNameByID(id) {
-//   const matchingCategory = CATEGORIES.find((category) => category.id === id);
-//   return matchingCategory ? matchingCategory.title : null;
-// }
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator>
+      <Drawer.Screen name="Categories" component={CategoriesScreen} />
+      <Drawer.Screen name="Favorites" component={FavoritesScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -27,35 +34,15 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="MealsCategories"
-            component={CategoriesScreen}
+            name="Drawer"
+            component={DrawerNavigator}
             options={{
               title: "All Categories",
+              headerShown: false,
             }}
           />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverViewScreen}
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   const title = getNameByID(catId);
-            //   return {
-            //     title: title,
-            //   };
-            // }}
-          />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealScreen}
-
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   const title = getNameByID(catId);
-            //   return {
-            //     title: title,
-            //   };
-            // }}
-          />
+          <Stack.Screen name="MealsOverview" component={MealsOverViewScreen} />
+          <Stack.Screen name="MealDetail" component={MealScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
